@@ -1,0 +1,20 @@
+<%= form_tag sessions_path do %>
+  <div class="field">
+    <p><%= label_tag :email, "Email" %></p>
+    <p><%= text_field_tag :email %></p>
+  </div>
+
+  <div class="field">
+    <p><%= label_tag :password, "Password" %></p>
+    <p><%= password_field_tag :password %></p>
+  </div>
+
+  <div class="checkbox">
+    <p><%= check_box_tag :remember_me_token %>
+    <%= label_tag :remember_me_token, "Remember Me" %></p>
+  </div>
+
+  <p class="button"><%= submit_tag "Submit" %></p>
+<% end %>
+
+<%= link_to 'Forgot Password?', new_password_reset_path %>
