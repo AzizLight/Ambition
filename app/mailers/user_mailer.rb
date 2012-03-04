@@ -10,8 +10,6 @@ class UserMailer < ActionMailer::Base
     @user = user
     @url = "http://localhost.3000/password_resets/#{user.reset_password_token}/edit"
 
-    p user.email
-    mail(:to => user.email,
-        :subject => "Password Reset")
+    mail(:to => user.email)
   end
 end
