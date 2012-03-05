@@ -34,4 +34,18 @@ Ambition::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+  
+  # ActionMailer config
+  config.action_mailer.default_url_options = { host: "azizlight.me" }
+  config.action_mailer.raise_delivery_errors = true # DEBUG
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 465,
+    :domain               => 'mail.azizlight.me',
+    :user_name            => ENV['GMAIL_USERNAME'],
+    :password             => ENV['GMAIL_PASSWORD'],
+    :authentication       => :plain,
+    :enable_starttls_auto => true
+  }
 end
