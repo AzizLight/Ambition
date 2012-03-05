@@ -9,7 +9,8 @@ class Post < ActiveRecord::Base
 
   validates :body, :presence => true
 
-  validates :published, :presence => true
+  # NOTE: Don't use :presence => true ! Or else validations will fail
+  validates :published, :inclusion => { :in => [true, false] }
 
   validates :user_id, :presence => true
 end

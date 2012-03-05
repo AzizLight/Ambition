@@ -11,6 +11,11 @@ Ambition::Application.routes.draw do
 
   namespace :admin do
     root :to => "users#new"
+
+    # Users
     resources :users, :only => [:new, :create]
+
+    # Posts
+    resources :posts
   end
 end

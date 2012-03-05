@@ -1,0 +1,6 @@
+<h1><%= @post.title %></h1>
+<div><%= @post.body %></div>
+<div class="sidebar">
+  <%= debug @post.published %>
+  <p><%= @post.published ? "Published" : "Draft" %></p>
+</div>
