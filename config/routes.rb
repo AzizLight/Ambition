@@ -17,5 +17,6 @@ Ambition::Application.routes.draw do
 
     # Posts
     resources :posts
+    match '/posts/:id/delete' => 'posts#delete'
   end
 end

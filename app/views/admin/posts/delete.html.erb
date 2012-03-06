@@ -1,2 +1,9 @@
-<h1>Admin::Posts#delete</h1>
-<p>Find me in app/views/admin/posts/delete.html.erb</p>
+<p>Are you sure you want to delete the following post?</p>
+<h3>Title</h3>
+<%= @post.title %>
+<h3>Body</h3>
+<%= @post.body %>
+
+<%= form_for @post, :url => admin_post_path, :method => :delete do |f| %>
+  <%= link_to "Cancel", admin_post_path(@post) %>&nbsp;<%= f.submit "Delete" %>
+<% end %>
