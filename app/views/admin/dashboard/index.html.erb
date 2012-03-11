@@ -1,0 +1,11 @@
+<% @posts.each do |post| %>
+  <h2><%= post.title %></h2>
+  <div>
+    <%= post.body %>
+  </div>
+
+  <ul>
+    <li>Published? <%= post.published ? "true": "false" %></li>
+    <li>Owener: <%= post.user.username %></li>
+  </ul>
+<% end %>

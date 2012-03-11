@@ -10,7 +10,8 @@ Ambition::Application.routes.draw do
   match '/logout' => 'sessions#destroy'
 
   namespace :admin do
-    root :to => "users#new"
+    # Dashboard
+    resources :dashboard, :only => [:index]
 
     # Users
     resources :users, :only => [:new, :create]
@@ -18,5 +19,8 @@ Ambition::Application.routes.draw do
     # Posts
     resources :posts
     match '/posts/:id/delete' => 'posts#delete'
+
+    # Admin Root Path/URL
+    root :to => "dashboard#index"
   end
 end

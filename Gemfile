@@ -22,3 +22,7 @@ end
 gem 'jquery-rails'
 
 gem 'sorcery'
+
+group :development do
+  gem 'faker'
+end
