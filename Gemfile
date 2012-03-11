@@ -25,4 +25,5 @@ gem 'sorcery'
 
 group :development do
   gem 'faker'
+  gem 'thin'
 end
