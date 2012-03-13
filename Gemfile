@@ -26,4 +26,5 @@ gem 'sorcery'
 group :development do
   gem 'faker'
   gem 'thin'
+  gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
 end
