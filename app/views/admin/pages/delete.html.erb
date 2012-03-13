@@ -1,0 +1,7 @@
+<p>Are you sure you want to delete the following page?</p>
+<h3>Title</h3>
+<%= @page.title %>
+
+<%= form_for @page, :url => admin_page_path, :method => :delete do |f| %>
+  <%= link_to "Cancel", admin_page_path(@page) %>&nbsp;<%= f.submit "Delete" %>
+<% end %>

@@ -16,6 +16,10 @@ Ambition::Application.routes.draw do
     # Users
     resources :users, :only => [:new, :create]
 
+    # Pages
+    resources :pages
+    match '/pages/:id/delete' => 'pages#delete'
+
     # Posts
     resources :posts
     match '/posts/:id/delete' => 'posts#delete'
