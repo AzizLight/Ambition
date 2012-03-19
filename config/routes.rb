@@ -1,5 +1,7 @@
 Ambition::Application.routes.draw do
-  root :to => "sessions#new"
+  root :to => 'sessions#new'
+
+  get '/:slug/' => 'pages#show'
 
   # Password Resets
   resources :password_resets, :only => [:new, :create, :edit, :update]
