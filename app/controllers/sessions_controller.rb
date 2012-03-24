@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       flash[:success] = "Successfully logged in!"
       redirect_back_or_to admin_root_url
     else
-      flash.now.alert = "Email/password combination is invalid!"
+      flash.now[:error] = "Email/password combination is invalid!"
       render :new
     end
   end
