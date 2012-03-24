@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8">
   <title>Ambition</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag    "html5boilerplate", :media => "all" %>
+  <%= stylesheet_link_tag    "sessions", :media => "all" %>
+  <%= javascript_include_tag "modernizr-2.5.3.min" %>
+  <%= javascript_include_tag "sessions" %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
   <% flash.each do |key, value| %>

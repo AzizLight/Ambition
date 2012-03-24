@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8">
   <title>Ambition</title>
+  <%= stylesheet_link_tag    "html5boilerplate", :media => "all" %>
   <%= stylesheet_link_tag    "base", :media => "all" %>
   <%= stylesheet_link_tag    params[:controller], :media => "all" %>
+  <%= javascript_include_tag "modernizr-2.5.3.min" %>
   <%= javascript_include_tag "base" %>
   <%= javascript_include_tag params[:controller] %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
   <nav>
