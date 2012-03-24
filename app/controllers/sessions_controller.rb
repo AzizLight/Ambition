@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
   layout 'sessions'
 
   def new
+    @header_title = "Login"
   end
 
   def create
@@ -9,6 +10,7 @@ class SessionsController < ApplicationController
       flash[:success] = "Successfully logged in!"
       redirect_back_or_to admin_root_url
     else
+      @header_title = "Login"
       flash.now[:error] = "Email/password combination is invalid!"
       render :new
     end
