@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
   layout 'sessions'
 
   def new
+    redirect_back_or_to admin_root_url if logged_in?
     @header_title = "Login"
   end
 

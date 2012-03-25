@@ -1,7 +1,4 @@
 Ambition::Application.routes.draw do
-  root :to => 'sessions#new'
-
-  get '/:slug/' => 'pages#show'
 
   # Password Resets
   resources :password_resets, :only => [:new, :create, :edit, :update]
@@ -19,14 +16,19 @@ Ambition::Application.routes.draw do
     resources :users, :only => [:new, :create]
 
     # Pages
-    resources :pages
+    resources :pages, :except => [:show]
     match '/pages/:id/delete' => 'pages#delete'
 
     # Posts
-    resources :posts
+    resources :posts, :except => [:show]
     match '/posts/:id/delete' => 'posts#delete'
 
     # Admin Root Path/URL
     root :to => "dashboard#index"
   end
+
+  # Pages!
+  get '/:slug/' => 'pages#show'
+
+  root :to => 'sessions#new'
 end

@@ -3,10 +3,6 @@ class Admin::PostsController < Admin::BaseController
     @posts = Post.all
   end
 
-  def show
-    @post = Post.find_by_id(params[:id])
-  end
-
   def new
     @post = Post.new
   end

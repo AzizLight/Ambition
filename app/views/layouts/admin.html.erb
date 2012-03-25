@@ -4,31 +4,54 @@
   <meta charset="utf-8">
   <title>Ambition</title>
   <%= stylesheet_link_tag    "html5boilerplate", :media => "all" %>
-  <%= stylesheet_link_tag    "base", :media => "all" %>
+  <%= stylesheet_link_tag    "admin/base", :media => "all" %>
   <%= stylesheet_link_tag    params[:controller], :media => "all" %>
   <%= javascript_include_tag "modernizr-2.5.3.min" %>
-  <%= javascript_include_tag "base" %>
+  <%= javascript_include_tag "admin/base" %>
   <%= javascript_include_tag params[:controller] %>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-  <nav>
-    <% if logged_in? %>
-      Logged in as <%= current_user.username %> |
-      <%= link_to "Log out", logout_path %>
+  <header>
+    <h1>Ambition</h1>
+    <nav>
+      <%# NOTE: The menu is big enough to hold 5 items only! %>
+      <section id="menu">
+        <ul>
+          <li><%= link_to "Dashboard", admin_dashboard_index_path %></li>
+          <li><%= link_to "Posts", admin_posts_path %></li>
+          <li><%= link_to "Pages", admin_pages_path %></li>
+        </ul>
+      </section>
+
+      <section id="authentication">
+        <% if logged_in? %>
+          Logged in as <%= current_user.username %> |
+          <%= link_to "Log out", logout_path %>
+        <% end %>
+      </section>
+    </nav>
+  </header>
+
+  <div id="wrapper">
+    <% flash.each do |key, value| %>
+      <div class="flash <%= key %>">
+        <%= value %>
+      </div>
     <% end %>
-  </nav>
 
-  <% flash.each do |key, value| %>
-    <div class="flash <%= key %>">
-      <%= value %>
-    </div>
-  <% end %>
+    <section id="main-content" class="clearfix">
+      <%= yield %>
+    </section>
 
-  <%= yield %>
-
-  <%= debug params if Rails.env.development? %>
-
+    <%= debug params if Rails.env.development? %>
+    
+    <footer>
+      
+      <p>Made with tendor love by Aziz Light</p>
+      
+    </footer>
+  </div> <%# End of wrapper %>
 </body>
 </html>

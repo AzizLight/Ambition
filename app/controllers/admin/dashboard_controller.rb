@@ -1,6 +1,6 @@
 class Admin::DashboardController < Admin::BaseController
   def index
     # Show the three most recent posts
-    @posts = Post.limit(3)
+    @post = Post.last
   end
 end

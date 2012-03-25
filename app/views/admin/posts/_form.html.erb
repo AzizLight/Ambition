@@ -1,13 +1,11 @@
 <%= render 'error_messages' %>
 
 <div class="field">
-  <p><%= f.label :title, 'Title' %></p>
-  <p><%= f.text_field :title %></p>
+  <%= f.text_field :title %>
 </div>
 
 <div class="field">
-  <p><%= f.label :body, 'Body' %></p>
-  <p><%= f.text_area :body %></p>
+  <%= f.text_area :body %>
 </div>
 
 <p class="drop-down">
@@ -15,6 +13,6 @@
   <%= f.select(:published, options_for_select([["Published", true], ["Draft", false]], (@post.new_record? ? false: @post.published))) %>
 </p>
 
-<p class="hidden"><%= f.hidden_field :user_id, :value => current_user.id %></p>
+<%= f.hidden_field :user_id, :value => current_user.id %>
 
 <%= f.submit "Submit" %>

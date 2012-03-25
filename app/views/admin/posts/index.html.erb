@@ -1,6 +1,20 @@
-<% @posts.each do |post| %>
-  <h2><%= post.title %></h2>
-  <p>by <%= post.user.username %></p>
-  <div><%= post.body %></div>
-  <hr />
-<% end %>
+<section class="box">
+  <header>
+    <h2>Posts</h1>
+  </header>
+  <table border="0" cellspacing="5" cellpadding="5" id="posts">
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Date</th>
+    </tr>
+    <% @posts.each do |post| %>
+    <tr>
+      <td><%= link_to post.title.truncate(80), edit_admin_post_path(post) %></td>
+      <td><%= post.user.username %></td>
+      <td>Created: <%= format_date post.created_at %><br />
+        Updated: <%= format_date post.updated_at %></td>
+    </tr>
+    <% end %>
+  </table>
+</section>
