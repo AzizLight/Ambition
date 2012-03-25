@@ -16,3 +16,4 @@ rerun.txt
 pickle-email-*.html
 NERD_Tree*
 .DS_STORE
+.tm_properties
