@@ -23,6 +23,8 @@ gem 'jquery-rails'
 
 gem 'sorcery'
 
+gem 'kaminari'
+
 group :development do
   gem 'faker'
   gem 'thin'

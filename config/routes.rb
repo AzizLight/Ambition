@@ -20,7 +20,9 @@ Ambition::Application.routes.draw do
     match '/pages/:id/delete' => 'pages#delete'
 
     # Posts
-    resources :posts, :except => [:show]
+    resources :posts, :except => [:show] do
+      get 'page/:page', :action => :index, :on => :collection
+    end
     match '/posts/:id/delete' => 'posts#delete'
 
     # Admin Root Path/URL
