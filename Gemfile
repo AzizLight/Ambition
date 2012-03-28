@@ -29,4 +29,5 @@ group :development do
   gem 'faker'
   gem 'thin'
   gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
+  gem 'rails-footnotes', '>= 3.7.5.rc4'
 end
