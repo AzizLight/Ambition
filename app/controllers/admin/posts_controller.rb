@@ -1,9 +1,11 @@
 class Admin::PostsController < Admin::BaseController
   def index
+    @title = "Posts"
     @posts = Post.order("created_at DESC").page(params[:page]).per(10)
   end
 
   def new
+    @title = "New Post"
     @post = Post.new
   end
 
@@ -13,11 +15,13 @@ class Admin::PostsController < Admin::BaseController
       flash[:success] = "Post created successfully!"
       redirect_to admin_post_path(@post)
     else
+      @title = "New Post"
       render :new
     end
   end
 
   def edit
+    @title = "Edit Post"
     @post = Post.find_by_id(params[:id])
   end
 
@@ -27,11 +31,13 @@ class Admin::PostsController < Admin::BaseController
       flash[:success] = "Post updated successfully!"
       redirect_to admin_post_path(@post)
     else
+      @title = "Edit Post"
       render :edit
     end
   end
 
   def delete
+    @title = "Delete Post"
     @post = Post.find_by_id(params[:id])
   end
 

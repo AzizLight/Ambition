@@ -1,5 +1,7 @@
-<section class="box">
-  <%= form_for @post, :url => admin_posts_path(@user) do |f| %>
-    <%= render 'form', :f => f %>
+<section class="grid_12">
+  <%= form_for @post, :url => admin_posts_path(@user), :html => { :class => "form" } do |f| %>
+    <%= field_set_tag "" do %>
+      <%= render 'form', :f => f %>
+    <% end %>
   <% end %>
 </section>

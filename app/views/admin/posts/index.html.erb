@@ -1,22 +1,32 @@
-<section class="box">
-  <header>
-    <h2>Posts</h1>
-  </header>
-  <table border="0" cellspacing="5" cellpadding="5" id="posts">
-    <tr>
-      <th>Title</th>
-      <th>Author</th>
-      <th>Date</th>
-    </tr>
-    <% @posts.each do |post| %>
-    <tr>
-      <td><%= link_to post.title.truncate(80), edit_admin_post_path(post) %></td>
-      <td><%= post.user.username %></td>
-      <td>Created: <%= format_date post.created_at %><br />
-        Updated: <%= format_date post.updated_at %></td>
-    </tr>
-    <% end %>
-  </table>
-
-  <%= paginate @posts %>
+<section id="dashtabs" class="grid_12">
+  <div id="dashtabs-pages" class="box-content no-padding">
+    <table class="table no-border">
+      <thead>
+        <tr>
+          <td>Title</td>
+          <td>Author</td>
+          <td>Date</td>
+          <td>Operations</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @posts.each_with_index do |post, index| %>
+          <% klass = (index.odd?) ? "alt" : "" %>
+          <tr class="<%= klass %>">
+            <td><%= link_to post.title, edit_admin_post_path(post) %></td>
+            <td><%= post.user.username %></td>
+            <td><%= time_ago_in_words(post.created_at) %> ago</td>
+            <td class="last">
+              <%= link_to image_tag("img/icons/16/page_edit.png", :alt => "Edit Post"), edit_admin_post_path(post), :title => "Edit Post", :class => "tooltip" %>
+              <%= link_to image_tag("img/icons/16/page_delete.png", :alt => "Delete Post"), admin_delete_post_path(post), :title => "Delete Post", :class => "tooltip"  %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="box-footer">
+    <span class="txt-smaller txt-light">&nbsp;</span>
+    <%= paginate @posts %>
+  </div>
 </section>

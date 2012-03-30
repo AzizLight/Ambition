@@ -1,55 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" class="no-js">
 <head>
   <meta charset="utf-8">
   <title>Ambition</title>
-  <%= stylesheet_link_tag    "html5boilerplate", :media => "all" %>
-  <%= stylesheet_link_tag    "admin/base", :media => "all" %>
-  <%= stylesheet_link_tag    params[:controller], :media => "all" %>
-  <%= javascript_include_tag "modernizr-2.5.3.min" %>
-  <%= javascript_include_tag "admin/base" %>
-  <%= javascript_include_tag params[:controller] %>
-  <%= csrf_meta_tags %>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-  <header>
-    <h1>Ambition</h1>
-    <nav>
-      <%# NOTE: The menu is big enough to hold 5 items only! %>
-      <section id="menu">
-        <ul>
-          <li><%= link_to "Dashboard", admin_dashboard_index_path %></li>
-          <li><%= link_to "Posts", admin_posts_path %></li>
-          <li><%= link_to "Pages", admin_pages_path %></li>
-        </ul>
-      </section>
 
-      <section id="authentication">
-        <% if logged_in? %>
-          Logged in as <%= current_user.username %> |
-          <%= link_to "Log out", logout_path %>
-        <% end %>
-      </section>
-    </nav>
+  <!-- Make sure the latest version of IE is used -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <%= csrf_meta_tags %>
+
+  <%= render "admin/stylesheets_includes" %>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <%= javascript_include_tag "js/modernizr-1.5.min.js" %>
+</head>
+<body class="sidebar-left">
+  <header>
+    <%= render "admin/header" %>
   </header>
 
-  <div id="wrapper">
-    <% flash.each do |key, value| %>
-      <div class="flash <%= key %>">
-        <%= value %>
+  <div id="page">
+
+    <%= render "admin/sidebar" %>
+
+    <div id="page-content" class="container_12">
+      <%= link_to "Close Sidebar", "#", :id => "close_sidebar", :class => "tooltip east", :title => "Close Sidebar" %>
+      <%= link_to "Open Sidebar", "#", :id => "open_sidebar", :class => "tooltip east", :title => "Open Sidebar" %>
+
+      <div id="page-header">
+        <h1><%= @title %></h1>
       </div>
-    <% end %>
 
-    <section id="main-content" class="clearfix">
       <%= yield %>
-    </section>
 
-    <footer>
+      <% if Rails.env.development? %>
+        <div id="footnotes_holder"></div>
+      <% end %>
 
-      <p>Made with tendor love by Aziz Light</p>
+      <br class="cl" />
+    </div>
+  </div>
+  <footer>Copyright &copy;<%= Time.now.year %>, Made with tender love by <%= link_to "Aziz Light", "http://azizlight.me/" %></footer>
 
-    </footer>
-  </div> <%# End of wrapper %>
+  <%= render "admin/javascript_includes" %>
+
 </body>
 </html>

@@ -1,0 +1,16 @@
+<aside>
+  <ul id="sidebar-nav">
+    <li><%= link_to "Posts", "#" %>
+      <ul class="drop" style="display: block;">
+        <li><%= link_to image_tag("img/icons/16/page.png", :alt => nil) + "Manage Posts", admin_posts_path %></li>
+        <li><%= link_to image_tag("img/icons/16/page_add.png", :alt => nil) + "Add Post", new_admin_post_path %></li>
+      </ul>
+    </li>
+    <li><%= link_to "Pages", "#" %>
+      <ul class="drop" style="display: block;">
+        <li><%= link_to image_tag("img/icons/16/page.png", :alt => nil) + "Manage Pages", admin_pages_path %></li>
+        <li><%= link_to image_tag("img/icons/16/page_add.png", :alt => nil) + "Add Page", new_admin_page_path %></li>
+      </ul>
+    </li>
+  </ul>
+</aside>

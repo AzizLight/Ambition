@@ -1,33 +1,41 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en" class="no-js">
 <head>
-  <meta charset="utf-8">
-  <title>Ambition</title>
-  <%= stylesheet_link_tag    "html5boilerplate", :media => "all" %>
-  <%= stylesheet_link_tag    "sessions", :media => "all" %>
-  <%= javascript_include_tag "modernizr-2.5.3.min" %>
-  <%= javascript_include_tag "sessions" %>
-  <%= csrf_meta_tags %>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+
+<title>Admin Base - Login</title>
+<meta name="description" content="">
+<meta name="author" content="">
+<!-- Make sure the latest version of IE is used -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+<!-- Place favicon.ico and apple-touch-icon.png in the root of your domain and delete these references -->
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<!-- CSS - Setup -->
+<%= stylesheet_link_tag "css/style.css" %>
+<%= stylesheet_link_tag "css/grid.css" %>
+<!-- CSS - Styles -->
+<%= stylesheet_link_tag "css/base.css" %>
+<%= stylesheet_link_tag "css/forms.css" %>
+<%= stylesheet_link_tag "css/lists.css" %>
+<%= stylesheet_link_tag "css/calendar.css" %>
+<%= stylesheet_link_tag "css/extensions.css" %>
+<!-- Theme  -->
+<%= stylesheet_link_tag "css/themes.blue.css", :id => "theme" %>
+
+<!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
+<%= javascript_include_tag "js/modernizr-1.5.min.js" %>
 </head>
-<body>
-  <div id="wrapper">
-    <header>
-      <%# Ultimately, this will get replace by a logo %>
-      <h1>Ambition</h1>
-    </header>
 
-    <% flash.each do |key, value| %>
-      <div class="flash <%= key %>">
-        <%= value %>
-      </div>
-    <% end %>
+<!--[if IE 7 ]>    <body class="ie7 login"> <![endif]-->
+<!--[if IE 8 ]>    <body class="ie8 login"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<body class="login">
+<!--<![endif]-->
 
-    <section id="box">
-      <header>
-        <h2><%= @header_title %></h2>
-      </header>
-      <%= yield %>
-    </section>
-  </div>
+  <%= yield %>
+
 </body>
+</html>

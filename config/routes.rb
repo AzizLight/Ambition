@@ -5,8 +5,8 @@ Ambition::Application.routes.draw do
 
   # Sessions
   resources :sessions, :only => [:new, :create, :destroy]
-  match '/login' => 'sessions#new'
-  match '/logout' => 'sessions#destroy'
+  get '/login' => 'sessions#new'
+  delete '/logout' => 'sessions#destroy'
 
   namespace :admin do
     # Dashboard
@@ -17,13 +17,13 @@ Ambition::Application.routes.draw do
 
     # Pages
     resources :pages, :except => [:show]
-    match '/pages/:id/delete' => 'pages#delete'
+    get '/pages/:id/delete' => 'pages#delete', :as => "delete_page"
 
     # Posts
     resources :posts, :except => [:show] do
       get 'page/:page', :action => :index, :on => :collection
     end
-    match '/posts/:id/delete' => 'posts#delete'
+    get '/posts/:id/delete' => 'posts#delete', :as => "delete_post"
 
     # Admin Root Path/URL
     root :to => "dashboard#index"

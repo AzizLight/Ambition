@@ -1,9 +1,11 @@
 class Admin::PagesController < Admin::BaseController
   def index
+    @title = "Pages"
     @pages = Page.all
   end
 
   def new
+    @title = "New Page"
     @page = Page.new
   end
 
@@ -13,15 +15,13 @@ class Admin::PagesController < Admin::BaseController
       flash[:success] = "Page created successfully"
       redirect_to admin_page_path(@page)
     else
+      @title = "New Page"
       render :new
     end
   end
 
-  def show
-    @page = Page.find_by_id(params[:id])
-  end
-
   def edit
+    @title = "Edit Post"
     @page = Page.find_by_id(params[:id])
   end
 
@@ -31,11 +31,13 @@ class Admin::PagesController < Admin::BaseController
       flash[:success] = "Page updated successfully"
       redirect_to admin_page_path(@page)
     else
+      @title = "Edit Post"
       render :edit
     end
   end
 
   def delete
+    @title = "Delete Post"
     @page = Page.find_by_id(params[:id])
   end
 

@@ -1,21 +1,32 @@
-<%= form_tag sessions_path do %>
-  <div class="field">
-    <%= label_tag :email, "Email" %>
-    <%= text_field_tag :email %>
-  </div>
+<div class="box-header">
+  <h2>Admin Login</h2>
+</div>
+<div class="box">
+  <%# flash messages %>
+  <% flash.each do |key, value| %>
+    <div class="notification <%= key %>">
+      <span class="strong"><%= key.capitalize %>:</span>
+      <%= value %>
+    </div>
+  <% end %>
 
-  <div class="field">
-    <%= label_tag :password, "Password" %>
-    <%= password_field_tag :password %>
-  </div>
+  <%= form_tag sessions_path, :class => "form col" do %>
+    <p>
+    <%= label_tag :email, "Email", :class => "strong" %>
+    <%= text_field_tag :email, nil, :tabindex => 1, :title => "Please enter your Username." %>
+    </p>
 
-  <%= submit_tag "Submit" %>
+    <p>
+    <%= label_tag :password, "Password", :class => "strong" %>
+    <%= password_field_tag :password, nil, :tabindex => 2, :title => "Please enter your password." %>
+    </p>
 
-  <div class="checkbox">
-    <%= check_box_tag :remember_me_token %>
-    <%= label_tag :remember_me_token, "Remember Me" %>
-  </div>
+    <p class="no-margin">
+    <%= label_tag :remember_me_token, "#{check_box_tag(:remember_me_token)} Remember Me".html_safe %>
+    <%= submit_tag "Login", :class => "button small fr grey" %>
+    <br class="cl" />
+    </p>
+  <% end %>
 
-<% end %>
-
-<%= link_to 'Forgot Password?', new_password_reset_path %>
+  <%= link_to 'Forgot Password?', new_password_reset_path %>
+</div>

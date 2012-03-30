@@ -1,18 +1,20 @@
 <%= render 'error_messages' %>
 
-<div class="field">
-  <%= f.text_field :title %>
-</div>
+<p>
+  <%= f.label :title, 'Title:' %>
+  <%= f.text_field :title, :class => "full-width" %>
+</p>
 
-<div class="field">
+<p>
+  <%= f.label :body, 'Body:' %>
   <%= f.text_area :body %>
-</div>
+<p>
 
-<p class="drop-down">
-  <%= f.label :published, 'Status' %>
+<p>
+  <%= f.label :published, 'Status:' %>
   <%= f.select(:published, options_for_select([["Published", true], ["Draft", false]], (@post.new_record? ? false: @post.published))) %>
 </p>
 
 <%= f.hidden_field :user_id, :value => current_user.id %>
 
-<%= f.submit "Submit" %>
+<p><%= f.submit "Submit", :class => "button grey medium" %></p>
