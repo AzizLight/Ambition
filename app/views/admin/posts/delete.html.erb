@@ -4,12 +4,12 @@
 
     <section>
       <h3 class="no-margin">Title:</h3>
-      <%= @post.title %>
+      <p><%= @post.title %></p>
     </section>
 
     <section>
       <h3 class="no-margin">Body:</h3>
-      <%= @post.body %>
+      <%= markdown(@post.body) %>
     </section>
 
     <p class="no-margin">

@@ -25,6 +25,12 @@ gem 'sorcery'
 
 gem 'kaminari'
 
+gem 'redcarpet'
+
+gem 'pygments.rb'
+
+gem 'nokogiri'
+
 group :development do
   gem 'faker'
   gem 'thin'
