@@ -2,3 +2,17 @@
 {
   width: 98%;
 }
+
+// Sticky footer
+#page
+{
+  padding-bottom: 35px;
+}
+footer
+{
+  position: fixed;
+  height: 15px;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+}
