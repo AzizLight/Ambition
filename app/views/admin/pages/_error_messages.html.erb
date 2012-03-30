@@ -1,12 +1,7 @@
 <% if @page.errors.any? %>
   <div id="error_explanation">
-    <h2><%= pluralize(@page.errors.count, 'error') %>
-    prohibited this page from being saved</h2>
-    <p>There were problems with the following fields:</p>
-    <ul>
-      <% @page.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
+    <% @page.errors.full_messages.each do |message| %>
+      <p class="notification error"><%= message %></p>
+    <% end %>
   </div>
 <% end %>

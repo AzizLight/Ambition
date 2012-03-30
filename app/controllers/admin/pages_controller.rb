@@ -1,7 +1,7 @@
 class Admin::PagesController < Admin::BaseController
   def index
     @title = "Pages"
-    @pages = Page.all
+    @pages = Page.order("created_at DESC").page(params[:page]).per(10)
   end
 
   def new
