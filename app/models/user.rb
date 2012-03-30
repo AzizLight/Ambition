@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
 
   has_many :posts
 
-  attr_accessible :username, :email, :password, :password_confirmation
+  attr_accessible :username, :email, :password, :password_confirmation, :admin
 
   validates :username, :presence => true,
                        :uniqueness => { :case_sensitive => false },
