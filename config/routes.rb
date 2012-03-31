@@ -16,7 +16,9 @@ Ambition::Application.routes.draw do
     resources :users, :only => [:new, :create]
 
     # Pages
-    resources :pages, :except => [:show]
+    resources :pages, :except => [:show] do
+      get 'page/:page', :action => :index, :on => :collection
+    end
     get '/pages/:id/delete' => 'pages#delete', :as => "delete_page"
 
     # Posts
