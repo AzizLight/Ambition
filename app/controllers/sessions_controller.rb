@@ -7,7 +7,11 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if login(params[:email], params[:password], params[:remember])
+    user = User.find_by_username(params[:email]) || User.find_by_email(params[:email])
+    if user.suspended?
+      flash[:warning] = "Your account have been suspended!"
+      redirect_to login_url
+    elsif login(params[:email], params[:password], params[:remember])
       flash[:success] = "Successfully logged in!"
       redirect_back_or_to admin_root_url
     else

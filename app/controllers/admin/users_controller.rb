@@ -36,25 +36,39 @@ class Admin::UsersController < Admin::BaseController
     @user = User.find_by_id(params[:id])
     if @user.update_attributes(params[:user])
       flash[:success] = "User updated successfully!"
-      redirect_to admin_user_path(@user)
+      redirect_to admin_user_url(@user)
     else
       @title = "Edit User"
       render :edit
     end
   end
 
-  def destroy
-    user = User.find_by_id(params[:id])
+  def suspend
+    user = User.find_by_id(params[:user_id])
 
-    # Prevent a user from deleting himself
     if user.id == current_user.id
-      flash[:error] = "You can't delete yourself"
-      redirect_to admin_users_path
+      flash[:error] = "You can't suspend yourself"
+    elsif user.suspended?
+      flash[:error] = "You can't suspend a user that is already suspended!"
     else
-      user.destroy
-      flash[:success] = "User deleted successfully!"
-      redirect_to admin_users_path
+      user.suspend
+      flash[:success] = "User suspended successfully!"
     end
+
+    redirect_back_or_to admin_users_url
+  end
+
+  def activate
+    user = User.find_by_id(params[:user_id])
+
+    if user.active?
+      flash[:error] = "You can't activate a user that is already active!"
+    else user.admin?
+      user.activate
+      flash[:success] = "User activated successfully!"
+    end
+
+    redirect_back_or_to admin_users_url
   end
 
   private

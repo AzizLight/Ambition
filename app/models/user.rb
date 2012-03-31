@@ -15,6 +15,7 @@
 #  reset_password_token_expires_at :datetime
 #  reset_password_email_sent_at    :datetime
 #  admin                           :boolean
+#  active                          :boolean
 #
 
 class User < ActiveRecord::Base
@@ -22,7 +23,7 @@ class User < ActiveRecord::Base
 
   has_many :posts
 
-  attr_accessible :username, :email, :password, :password_confirmation, :admin
+  attr_accessible :username, :email, :password, :password_confirmation, :admin, :active
 
   validates :username, :presence => true,
                        :uniqueness => { :case_sensitive => false },
@@ -41,6 +42,24 @@ class User < ActiveRecord::Base
   validates :password_confirmation, :presence => true, :on => :create
 
   def admin?
-    self.admin == true
+    self.admin
+  end
+
+  def active?
+    self.active
+  end
+
+  def suspended?
+    !self.active
+  end
+
+  def suspend
+    self.active = false
+    self.save
+  end
+
+  def activate
+    self.active = true
+    self.save
   end
 end

@@ -13,22 +13,26 @@ Ambition::Application.routes.draw do
     resources :dashboard, :only => [:index]
 
     # Users
-    resources :users
+    resources :users do
+      get 'page/:page', :action => :index, :on => :collection
+      get 'suspend', :action => :suspend, :as => 'suspend'
+      get 'activate', :action => :activate, :as => 'activate'
+    end
 
     # Pages
     resources :pages, :except => [:show] do
       get 'page/:page', :action => :index, :on => :collection
     end
-    get '/pages/:id/delete' => 'pages#delete', :as => "delete_page"
+    get '/pages/:id/delete' => 'pages#delete', :as => 'delete_page'
 
     # Posts
     resources :posts, :except => [:show] do
       get 'page/:page', :action => :index, :on => :collection
     end
-    get '/posts/:id/delete' => 'posts#delete', :as => "delete_post"
+    get '/posts/:id/delete' => 'posts#delete', :as => 'delete_post'
 
     # Admin Root Path/URL
-    root :to => "dashboard#index"
+    root :to => 'dashboard#index'
   end
 
   # Pages!
