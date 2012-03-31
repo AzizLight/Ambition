@@ -36,4 +36,5 @@ group :development do
   gem 'thin'
   gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
   gem 'rails-footnotes', '>= 3.7.5.rc4'
+  gem 'heroku'
 end
