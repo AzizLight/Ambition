@@ -13,7 +13,7 @@ Ambition::Application.routes.draw do
     resources :dashboard, :only => [:index]
 
     # Users
-    resources :users, :only => [:new, :create]
+    resources :users
 
     # Pages
     resources :pages, :except => [:show] do

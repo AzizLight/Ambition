@@ -1,5 +1,5 @@
 <section class="grid_12">
-  <%= form_for @user, :url => admin_users_path, :html => { :class => "form" } do |f| %>
+  <%= form_for @user, :url => admin_user_path, :html => { :class => "form" } do |f| %>
     <%= field_set_tag "" do %>
       <%= render "form", :f => f %>
     <% end %>

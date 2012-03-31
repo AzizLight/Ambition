@@ -28,6 +28,13 @@
       <%= link_to "Close Sidebar", "#", :id => "close_sidebar", :class => "tooltip east", :title => "Close Sidebar" %>
       <%= link_to "Open Sidebar", "#", :id => "open_sidebar", :class => "tooltip east", :title => "Open Sidebar" %>
 
+      <% flash.each do |key, value| %>
+        <div class="notification <%= key %>">
+          <span class="strong"><%= key.capitalize %>:</span>
+          <%= value %>
+        </div>
+      <% end %>
+
       <div id="page-header">
         <h1><%= @title %></h1>
       </div>

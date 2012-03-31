@@ -1,0 +1,33 @@
+<section id="dashtabs" class="grid_12">
+  <div id="dashtabs-pages" class="box-content no-padding">
+    <table class="table no-border">
+      <thead>
+        <tr>
+          <td>Username</td>
+          <td>Email</td>
+          <td>Date</td>
+          <td>Operations</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each_with_index do |user, index| %>
+          <% klass = (index.odd?) ? "alt" : "" %>
+          <tr class="<%= klass %>">
+            <td><%= link_to user.username, edit_admin_user_path(user) %></td>
+            <td><%= user.email %></td>
+            <td><%= time_ago_in_words(user.created_at) %> ago</td>
+            <td class="last">
+              <%= link_to image_tag("img/icons/16/user.png", :alt => "Show user"), admin_user_path(user),  :title => "Show user", :class => "tooltip"  %>
+              <%= link_to image_tag("img/icons/16/user_edit.png", :alt => "Edit user"), edit_admin_user_path(user), :title => "Edit user", :class => "tooltip" %>
+              <%= link_to image_tag("img/icons/16/user_delete.png", :alt => "Delete user"), admin_user_path(user), :method => :delete, :confirm => "Are you sure you want to delete this user?", :title => "Delete user", :class => "tooltip" unless current_user.id == user.id %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="box-footer">
+    <span class="txt-smaller txt-light">&nbsp;</span>
+    <%= paginate @users %>
+  </div>
+</section>

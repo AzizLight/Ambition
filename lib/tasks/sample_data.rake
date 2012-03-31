@@ -10,6 +10,12 @@ namespace :db do
                  :password_confirmation => "admin",
                  :admin => true)
 
+    User.create!(:username => "user",
+                 :email => "user@example.com",
+                 :password => "password",
+                 :password_confirmation => "password",
+                 :admin => false)
+
     10.times do
       user_name = Faker::Internet.user_name.gsub(/\./, '')
       User.create!(:username => user_name,
