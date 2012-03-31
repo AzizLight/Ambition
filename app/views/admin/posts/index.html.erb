@@ -13,13 +13,18 @@
         <% @posts.each_with_index do |post, index| %>
           <% klass = (index.odd?) ? "alt" : "" %>
           <tr class="<%= klass %>">
-            <td><%= link_to post.title, edit_admin_post_path(post) %></td>
+            <% kondition = (current_user.id == post.user.id || current_user.admin?) %>
+            <td><%= kondition ? link_to(post.title, edit_admin_post_path(post)) : post.title %></td>
             <td><%= post.user.username %></td>
             <td><%= time_ago_in_words(post.created_at) %> ago</td>
-            <td class="last">
-              <%= link_to image_tag("img/icons/16/page_edit.png", :alt => "Edit Post"), edit_admin_post_path(post), :title => "Edit Post", :class => "tooltip" %>
-              <%= link_to image_tag("img/icons/16/page_delete.png", :alt => "Delete Post"), admin_delete_post_path(post), :title => "Delete Post", :class => "tooltip"  %>
-            </td>
+            <% if kondition %>
+              <td class="last">
+                <%= link_to image_tag("img/icons/16/page_edit.png", :alt => "Edit Post"), edit_admin_post_path(post), :title => "Edit Post", :class => "tooltip" %>
+                <%= link_to image_tag("img/icons/16/page_delete.png", :alt => "Delete Post"), admin_delete_post_path(post), :title => "Delete Post", :class => "tooltip" if current_user.admin? %>
+              </td>
+            <% else %>
+              <td class="last">(None allowed)</td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>
