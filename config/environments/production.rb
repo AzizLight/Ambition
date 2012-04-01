@@ -52,7 +52,7 @@ Ambition::Application.configure do
    config.assets.precompile += %w( js/jquery.lightbox-0.5.min.js js/functions.js js/dd_belatedpng.js )
 
    # Compile assets that are not being precompiled
-   config.assets.compilte = true
+   config.assets.compile = true
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
