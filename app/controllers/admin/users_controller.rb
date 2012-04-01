@@ -70,13 +70,4 @@ class Admin::UsersController < Admin::BaseController
 
     redirect_back_or_to admin_users_url
   end
-
-  private
-
-  def admin?
-    unless current_user.admin?
-      flash[:warning] = "You are not allowed to access this page!"
-      redirect_back_or_to admin_dashboard_index_url
-    end
-  end
 end
