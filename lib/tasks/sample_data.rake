@@ -5,25 +5,22 @@ namespace :db do
     Rake::Task['db:reset'].invoke
 
     if Rails.env.production?
-      email = "aziz@azizlight.me"
-
       # Here we will generate a random password.
       temp = [('a'..'z'),('A'..'Z')].map{|i| i.to_a}.flatten
       password = (0..50).map{temp[rand(temp.length)]}.join
     else
-      email = "email@example.com"
       password = "password"
     end
 
     User.create!(:username => "admin",
-                 :email => email,
+                 :email => "aziz@azizlight.me",
                  :password => password,
                  :password_confirmation => password,
                  :admin => true,
                  :active => true)
 
     User.create!(:username => "user",
-                 :email => email,
+                 :email => "user@example.com",
                  :password => password,
                  :password_confirmation => password,
                  :admin => false,
