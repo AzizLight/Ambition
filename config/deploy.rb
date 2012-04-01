@@ -51,7 +51,7 @@ namespace :deploy do
 
   desc "Populate the database with sample data and users"
   task :populate, roles: :db do
-    run "RAILS_EN=production rake db:populate"
+    run "cd #{deploy_to}/current && RAILS_ENV=production rake db:populate"
   end
   after "deploy", "deploy:populate"
 end
