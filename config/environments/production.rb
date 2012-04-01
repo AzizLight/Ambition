@@ -46,13 +46,7 @@ Ambition::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-   config.assets.precompile += %w( css/base.css css/calendar.css css/extensions.css css/forms.css )
-   config.assets.precompile += %w( css/grid.css css/lists.css css/style.css css/visualize.css )
-   config.assets.precompile += %w( js/jquery.tipsy.js js/jquery.treeview.min.js js/jquery.cookie.js js/modernizr-1.5.min.js )
-   config.assets.precompile += %w( js/jquery.lightbox-0.5.min.js js/functions.js js/dd_belatedpng.js )
-
-   # Compile assets that are not being precompiled
-   config.assets.compile = true
+   config.assets.precompile += %w( admin/*.css admin/*.js css/*.css js/*.js )
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
