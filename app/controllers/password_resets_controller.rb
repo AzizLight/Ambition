@@ -1,4 +1,6 @@
 class PasswordResetsController < ApplicationController
+  layout "sessions"
+
   def new
   end
 
@@ -6,10 +8,10 @@ class PasswordResetsController < ApplicationController
     if params[:email].match /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i
       @user = User.find_by_email(params[:email])
       @user.deliver_reset_password_instructions! if @user
-      flash[:success] = "Instructions have been sent to your email." if @user
+      flash[:success] = "Instructions have been sent to your email."
       redirect_to root_path
     else
-      flash.now[:success] = "Invalid Email Address"
+      flash.now[:error] = "Invalid Email Address"
       render :new
     end
   end
