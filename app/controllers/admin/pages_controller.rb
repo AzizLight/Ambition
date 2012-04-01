@@ -13,7 +13,7 @@ class Admin::PagesController < Admin::BaseController
     @page = Page.new(params[:page])
     if @page.save
       flash[:success] = "Page created successfully"
-      redirect_to admin_page_path(@page)
+      redirect_to admin_pages_path
     else
       @title = "New Page"
       render :new
