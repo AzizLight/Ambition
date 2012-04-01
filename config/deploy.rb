@@ -48,4 +48,10 @@ namespace :deploy do
     end
   end
   before "deploy", "deploy:check_revision"
+
+  desc "Populate the database with sample data and users"
+  task :populate, roles: :db do
+    run "RAILS_EN=production rake db:populate"
+  end
+  after "deploy", "deploy:populate"
 end
