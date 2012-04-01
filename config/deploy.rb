@@ -50,8 +50,8 @@ namespace :deploy do
   before "deploy", "deploy:check_revision"
 
   desc "Populate the database with sample data and users"
-  task :populate, roles: :db do
-    run "cd #{deploy_to}/current && RAILS_ENV=production rake db:populate"
+  task :install, roles: :db do
+    run "cd #{deploy_to}/current && #{rake} ambition:install RAILS_ENV=production"
   end
-  after "deploy", "deploy:populate"
+  after "deploy", "deploy:install"
 end
