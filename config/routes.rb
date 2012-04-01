@@ -9,6 +9,9 @@ Ambition::Application.routes.draw do
   delete '/logout' => 'sessions#destroy'
 
   namespace :admin do
+    # Reset sample data
+    get "sample_data/reset" => "sample_data#reset", :as => "reset_sample_data"
+
     # Dashboard
     resources :dashboard, :only => [:index]
 
