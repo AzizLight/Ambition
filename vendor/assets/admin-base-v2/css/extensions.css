@@ -265,7 +265,7 @@ background-repeat:repeat-x;
 color:#FFFFFF;
 border:1px solid #00A1CD;
 }
-..ui-datepicker ui-state-hover a, .ui-datepicker .ui-state-hover a:hover { color: #212121; text-decoration: none; }
+.ui-datepicker ui-state-hover a, .ui-datepicker .ui-state-hover a:hover { color: #212121; text-decoration: none; }
 .ui-datepicker .ui-state-active, .ui-datepicker .ui-widget-content .ui-datepicker .ui-state-active, .ui-datepicker .ui-widget-header .ui-state-active { 
 box-shadow:0 0 5px rgba(0, 0, 0, 0.4) inset;
 -moz-box-shadow:0 0 5px rgba(0, 0, 0, 0.4) inset;
