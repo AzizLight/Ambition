@@ -2,9 +2,14 @@
   <div class="box-header">Latest Post</div>
   <div class="box">
     <section>
-      <h3 class="no-margin"><%= @post.title %></h3>
-      <p class="small" style="margin-left: 0;">By <%= @post.user.username %> on <%= format_date(@post.created_at) %></p>
-      <%= markdown(@post.body.truncate(255)) %>
+      <% if @post.nil? %>
+        <%# If there are no posts left show a message saying so %>
+        <p>There are no posts yet. Why don't you <%= link_to "add one", new_admin_post_path %> now?</p>
+      <% else %>
+        <h3 class="no-margin"><%= @post.title %></h3>
+        <p class="small" style="margin-left: 0;">By <%= @post.user.username %> on <%= format_date(@post.created_at) %></p>
+        <%= markdown(@post.body.truncate(255)) %>
+      <% end %>
     </section>
   </div>
 </section>

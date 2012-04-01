@@ -20,7 +20,7 @@ class Admin::PostsController < Admin::BaseController
     @post = Post.new(params[:post])
     if @post.save
       flash[:success] = "Post created successfully!"
-      redirect_to admin_post_path(@post)
+      redirect_to admin_posts_path
     else
       @title = "New Post"
       render :new
