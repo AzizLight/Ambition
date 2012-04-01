@@ -60,7 +60,7 @@ class Admin::PostsController < Admin::BaseController
 
   def restrict_access_to_authors
     @post = Post.find_by_id(params[:id])
-    unless current_user.id == @post.user.id
+    unless current_user.id == @post.user.id || current_user.admin?
       flash[:warning] = "You are not allowed to access this page!"
       redirect_back_or_to admin_posts_url
     end
