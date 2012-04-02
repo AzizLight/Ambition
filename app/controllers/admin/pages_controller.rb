@@ -21,7 +21,7 @@ class Admin::PagesController < Admin::BaseController
         :ip_address => request.remote_ip
       )
       flash[:success] = "Page created successfully"
-      redirect_to edit_admin_pages_url
+      redirect_to edit_admin_page_url
     else
       @title = "New Page"
       render :new
