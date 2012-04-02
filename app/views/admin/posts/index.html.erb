@@ -1,4 +1,5 @@
 <section id="dashtabs" class="grid_12">
+  <p><%= link_to "Add a new post", new_admin_post_path, :class => "button small fr black" %></p>
   <% if @posts.empty? %>
     <p>There are no posts yet. Why don't you <%= link_to "add one", new_admin_post_path %> now?</p>
   <% else %>
