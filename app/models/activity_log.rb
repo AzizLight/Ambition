@@ -24,7 +24,7 @@ class ActivityLog < ActiveRecord::Base
                           :length => { :within => 10..255 }
 
   validates :entity, :presence => true,
-                     :length => { :within => 4..10 }
+                     :length => { :within => 3..10 }
 
   validates :user_id, :presence => true,
                       :numericality => { :only_integer => true, :greater_than => 0 }

@@ -1,5 +1,4 @@
 Ambition::Application.routes.draw do
-
   # Password Resets
   resources :password_resets, :only => [:new, :create, :edit, :update]
 
@@ -9,6 +8,10 @@ Ambition::Application.routes.draw do
   delete '/logout' => 'sessions#destroy'
 
   namespace :admin do
+    # Activity logs
+    get "activity_logs" => "activity_logs#index", :as => "activity_logs"
+    delete "activity_logs/clear" => "activity_logs#clear", :as => "clear_activity_logs"
+
     # Reset sample data
     get "sample_data/reset" => "sample_data#reset", :as => "reset_sample_data"
 
