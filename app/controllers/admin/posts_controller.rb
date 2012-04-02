@@ -5,7 +5,7 @@ class Admin::PostsController < Admin::BaseController
   def index
     @title = "Posts"
     if current_user.admin?
-      @posts = Post.order("created_at DESC").page(params[:page]).per(10)
+      @posts = Post.page(params[:page]).per(10)
     else
       @posts = Post.where("user_id = ?", current_user.id).order("created_at DESC").page(params[:page]).per(10)
     end

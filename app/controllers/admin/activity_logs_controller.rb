@@ -2,7 +2,7 @@ class Admin::ActivityLogsController < Admin::BaseController
 
   def index
     @title = "Activity Logs"
-    @activity_logs = ActivityLog.order("created_at DESC").page(params[:page]).per(20)
+    @activity_logs = ActivityLog.page(params[:page]).per(20)
   end
 
   def clear

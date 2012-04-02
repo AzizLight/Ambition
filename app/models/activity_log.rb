@@ -15,6 +15,8 @@
 class ActivityLog < ActiveRecord::Base
   belongs_to :user
 
+  default_scope order("created_at DESC")
+
   attr_accessible :name, :description, :entity, :user_id, :ip_address
 
   validates :name, :presence => true,
