@@ -1,1 +1,19 @@
-<h1><%= @user.username %></h1>
+<div class="grid_12">
+  <div class="box-header"><%= @user.username %></div>
+  <div class="box">
+    <section>
+      <ul>
+        <li><strong>Username:</strong> <%= @user.username %></li>
+        <li><strong>Email:</strong> <%= @user.email %></li>
+        <li><strong>Created:</strong> <%= time_ago_in_words(@user.created_at) %> ago</li>
+        <li><strong>Updated:</strong> <%= time_ago_in_words(@user.updated_at) %> ago</li>
+        <li><strong>Admin:</strong> <%= @user.admin? ? "Yes" : "No" %></li>
+      </ul>
+    </section>
+    <section>
+      <%= link_to "Back", admin_users_path, :style => "margin-right: 10px;" %>
+      <%= link_to "Edit", edit_admin_user_path(@user), :class => "button blue medium" %>
+      <%= link_to "Delete", admin_user_path(@user), :method => :delete, :confirm => "Are you sure you want to delete this user?", :class => "button red medium" unless current_user.id == @user.id %>
+    </section>
+  </div>
+</div>

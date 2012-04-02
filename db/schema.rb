@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120313154942) do
+ActiveRecord::Schema.define(:version => 20120402095141) do
+
+  create_table "activity_logs", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "entity"
+    t.integer  "user_id"
+    t.string   "ip_address"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "pages", :force => true do |t|
     t.string   "title",      :null => false
@@ -42,6 +52,8 @@ ActiveRecord::Schema.define(:version => 20120313154942) do
     t.string   "reset_password_token"
     t.datetime "reset_password_token_expires_at"
     t.datetime "reset_password_email_sent_at"
+    t.boolean  "admin"
+    t.boolean  "active"
   end
 
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"

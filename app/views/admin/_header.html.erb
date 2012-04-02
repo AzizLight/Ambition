@@ -4,6 +4,9 @@
 </div>
 <div class="header-middle">
   <ul id="nav" class="fr">
+    <% if current_user.admin? %>
+      <li class="users"><%= link_to "Users", admin_users_path, :class => "users" %></li>
+    <% end %>
     <li class="content"><a class="content" href="#">Content</a>
       <ul>
         <li><%= link_to "Manage Posts", admin_posts_path %></li>

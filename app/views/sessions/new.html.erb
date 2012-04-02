@@ -13,7 +13,7 @@
   <%= form_tag sessions_path, :class => "form col" do %>
     <p>
     <%= label_tag :email, "Email", :class => "strong" %>
-    <%= text_field_tag :email, nil, :tabindex => 1, :title => "Please enter your Username." %>
+    <%= text_field_tag :email, nil, :tabindex => 1, :autofocus => true, :title => "Please enter your Username." %>
     </p>
 
     <p>

@@ -1,0 +1,35 @@
+<section id="dashtabs" class="grid_12">
+<p><%= link_to "Clear", admin_clear_activity_logs_path, :method => :delete, :class => "button small fr black" %></p>
+  <% if @activity_logs.empty? %>
+    <p>There was no recent activity.</p>
+  <% else %>
+    <div id="dashtabs-pages" class="box-content no-padding">
+      <table class="table no-border">
+        <thead>
+          <tr>
+            <td>Name</td>
+            <td>Description</td>
+            <td>User</td>
+            <td>Date</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @activity_logs.each_with_index do |activity_log, index| %>
+            <% klass = (index.odd?) ? "alt" : "" %>
+            <tr class="<%= klass %>">
+              <td><%= activity_log.name %></td>
+              <td><%= activity_log.description.html_safe %></td>
+              <td><%= activity_log.user.username %>
+                  <span class="txt-smaller">(<%= activity_log.ip_address %>)</span></td>
+              <td><%= time_ago_in_words(activity_log.created_at) %> ago</td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="box-footer">
+      <span class="txt-smaller txt-light">&nbsp;</span>
+      <%= paginate @activity_logs %>
+    </div>
+  <% end %>
+</section>

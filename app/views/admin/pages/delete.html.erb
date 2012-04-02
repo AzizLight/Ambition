@@ -1,7 +1,20 @@
-<p>Are you sure you want to delete the following page?</p>
-<h3>Title</h3>
-<%= @page.title %>
+<div class="grid_12">
+  <div class="box-header">Are you sure you want to delete the following page?</div>
+  <div class="box">
 
-<%= form_for @page, :url => admin_page_path, :method => :delete do |f| %>
-  <%= link_to "Cancel", admin_page_path(@page) %>&nbsp;<%= f.submit "Delete" %>
-<% end %>
+    <section>
+      <h3 class="no-margin">Title:</h3>
+      <p><%= @page.title %></p>
+    </section>
+
+    <section>
+      <h3 class="no-margin">Body:</h3>
+      <p><%= markdown(@page.body) %></p>
+    </section>
+
+    <p class="no-margin">
+      <%= link_to "Cancel", admin_page_path(@page) %>&nbsp;
+      <%= link_to "Delete", admin_page_path(@page), :method => :delete, :class => "button small" %>
+    </p>
+  </div>
+</div>

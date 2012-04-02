@@ -34,7 +34,7 @@ Ambition::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
-  
+
   # ActionMailer config
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
@@ -47,4 +47,7 @@ Ambition::Application.configure do
     :authentication       => 'plain',
     :enable_starttls_auto => true
   }
+
+  # Configure ActionMailer
+  config.action_mailer.default_url_options = { :host => "localhost:3000" }
 end
