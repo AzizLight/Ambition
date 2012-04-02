@@ -12,8 +12,16 @@ class Admin::PagesController < Admin::BaseController
   def create
     @page = Page.new(params[:page])
     if @page.save
+      page_title = "<a href=\"#{edit_admin_page_url(@page)}\">#{@page.title}</a>"
+      ActivityLog.create!(
+        :name => "New Page",
+        :description => "#{current_user.username} created a page: #{page_title}!",
+        :entity => "page",
+        :user_id => current_user.id,
+        :ip_address => request.remote_ip
+      )
       flash[:success] = "Page created successfully"
-      redirect_to admin_pages_path
+      redirect_to edit_admin_pages_url
     else
       @title = "New Page"
       render :new
@@ -28,8 +36,16 @@ class Admin::PagesController < Admin::BaseController
   def update
     @page = Page.find_by_id(params[:id])
     if @page.update_attributes(params[:page])
+      page_title = "<a href=\"#{edit_admin_page_url(@page)}\">#{@page.title}</a>"
+      ActivityLog.create!(
+        :name => "Updated Page",
+        :description => "#{current_user.username} updated a page: #{page_title}!",
+        :entity => "page",
+        :user_id => current_user.id,
+        :ip_address => request.remote_ip
+      )
       flash[:success] = "Page updated successfully"
-      redirect_to admin_page_path(@page)
+      redirect_to edit_admin_page_url(@page)
     else
       @title = "Edit Post"
       render :edit
@@ -44,10 +60,17 @@ class Admin::PagesController < Admin::BaseController
   def destroy
     @page = Page.find_by_id(params[:id])
     if @page.destroy
+      ActivityLog.create!(
+        :name => "Deleted Page",
+        :description => "#{current_user.username} deleted a page: #{@page.title}!",
+        :entity => "page",
+        :user_id => current_user.id,
+        :ip_address => request.remote_ip
+      )
       flash[:success] = "Page deleted successfully!"
-      redirect_to admin_pages_path
+      redirect_to admin_pages_url
     else
-      redirect_to admin_page_path(@page), :alert => "Unable to delete the page..."
+      redirect_to admin_page_url(@page), :alert => "Unable to delete the page..."
     end
   end
 end

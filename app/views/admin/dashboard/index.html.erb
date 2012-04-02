@@ -3,12 +3,28 @@
   <div class="box">
     <section>
       <% if @post.nil? %>
-        <%# If there are no posts left show a message saying so %>
+        <%# If there are no posts yet show a message saying so %>
         <p>There are no posts yet. Why don't you <%= link_to "add one", new_admin_post_path %> now?</p>
       <% else %>
         <h3 class="no-margin"><%= @post.title %></h3>
         <p class="small" style="margin-left: 0;">By <%= @post.user.username %> on <%= format_date(@post.created_at) %></p>
         <%= markdown(@post.body.truncate(255)) %>
+      <% end %>
+    </section>
+  </div>
+</section>
+<section class="grid_6">
+  <div class="box-header">Activity Log</div>
+  <div class="box">
+    <section>
+      <% if @activity_logs.empty? %>
+        <%# If there was no activity yet show a message saying so %>
+        <p>There was no activity yet.</p>
+      <% else %>
+        <% @activity_logs.each do |activity_log| %>
+          <h3 class="no-margin"><%= activity_log.name %></h3>
+          <p style="margin-left: 0;"><%= activity_log.description.html_safe %></p>
+        <% end %>
       <% end %>
     </section>
   </div>

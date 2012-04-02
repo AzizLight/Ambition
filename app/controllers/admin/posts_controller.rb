@@ -19,8 +19,16 @@ class Admin::PostsController < Admin::BaseController
   def create
     @post = Post.new(params[:post])
     if @post.save
+      post_title = (@post.user.id == current_user.id || current_user.admin?) ? "<a href=\"#{edit_admin_post_url(@post)}\">#{@post.title}</a>" : @post.title
+      ActivityLog.create!(
+        :name => "New post",
+        :description => "#{current_user.username} created a new post: #{post_title}",
+        :entity => "post",
+        :user_id => current_user.id,
+        :ip_address => request.remote_ip
+      )
       flash[:success] = "Post created successfully!"
-      redirect_to admin_posts_path
+      redirect_to edit_admin_post_url(@post)
     else
       @title = "New Post"
       render :new
@@ -33,8 +41,16 @@ class Admin::PostsController < Admin::BaseController
 
   def update
     if @post.update_attributes(params[:post])
+      post_title = (@post.user.id == current_user.id || current_user.admin?) ? "<a href=\"#{edit_admin_post_url(@post)}\">#{@post.title}</a>" : @post.title
+      ActivityLog.create!(
+        :name => "Updated post",
+        :description => "#{current_user.username} updated a post: #{post_title}",
+        :entity => "post",
+        :user_id => current_user.id,
+        :ip_address => request.remote_ip
+      )
       flash[:success] = "Post updated successfully!"
-      redirect_to admin_post_path(@post)
+      redirect_to edit_admin_post_url(@post)
     else
       @title = "Edit Post"
       render :edit
@@ -49,10 +65,17 @@ class Admin::PostsController < Admin::BaseController
   def destroy
     @post = Post.find_by_id(params[:id])
     if @post.destroy
+      ActivityLog.create!(
+        :name => "Deletd post",
+        :description => "#{current_user.username} deleted a post: #{@post.title}",
+        :entity => "post",
+        :user_id => current_user.id,
+        :ip_address => request.remote_ip
+      )
       flash[:success] = "Post deleted successfully!"
-      redirect_to admin_posts_path
+      redirect_to admin_posts_url
     else
-      redirect_to admin_post_path(@post), :alert => "Unable to delete the post..."
+      redirect_to admin_posts_url, :alert => "Unable to delete the post..."
     end
   end
 

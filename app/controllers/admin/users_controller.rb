@@ -19,6 +19,13 @@ class Admin::UsersController < Admin::BaseController
   def create
     @user = User.new(params[:user])
     if @user.save
+      ActivityLog.create!(
+        :name => "User created",
+        :description => "#{current_user.username} created a new user: <a href=\"#{admin_user_path(@user)}\">#{@user.username}</a>.",
+        :entity => "user",
+        :user_id => current_user.id,
+        :ip_address => request.remote_ip
+      )
       flash[:success] = "User created successfully!"
       redirect_to root_url
     else
@@ -52,6 +59,13 @@ class Admin::UsersController < Admin::BaseController
       flash[:error] = "You can't suspend a user that is already suspended!"
     else
       user.suspend
+      ActivityLog.create!(
+        :name => "User suspended!",
+        :description => "#{current_user.username} suspended #{user.username}.",
+        :entity => "user",
+        :user_id => current_user.id,
+        :ip_address => request.remote_ip
+      )
       flash[:success] = "User suspended successfully!"
     end
 
@@ -65,6 +79,13 @@ class Admin::UsersController < Admin::BaseController
       flash[:error] = "You can't activate a user that is already active!"
     else user.admin?
       user.activate
+      ActivityLog.create!(
+        :name => "User activated!",
+        :description => "#{current_user.username} activated #{user.username}.",
+        :entity => "user",
+        :user_id => current_user.id,
+        :ip_address => request.remote_ip
+      )
       flash[:success] = "User activated successfully!"
     end
 

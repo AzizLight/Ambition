@@ -27,6 +27,13 @@ class Admin::SampleDataController < Admin::BaseController
       )
     end
 
+    ActivityLog.create!(
+      :name => "Generated sample data",
+      :description => "#{current_user.username} generated sample data.",
+      :entity => "content",
+      :user_id => current_user.id,
+      :ip_address => request.remote_ip
+    )
     flash[:success] = "Successfully generated sample data"
     redirect_back_or_to admin_dashboard_index_url
   end
