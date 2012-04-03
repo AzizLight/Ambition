@@ -7,7 +7,7 @@ class Admin::PostsController < Admin::BaseController
     if current_user.admin?
       @posts = Post.page(params[:page]).per(10)
     else
-      @posts = Post.where("user_id = ?", current_user.id).order("created_at DESC").page(params[:page]).per(10)
+      @posts = Post.where("user_id = ?", current_user.id).page(params[:page]).per(10)
     end
   end
 
