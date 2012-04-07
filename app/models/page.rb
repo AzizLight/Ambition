@@ -20,13 +20,12 @@ class Page < ActiveRecord::Base
 
   validates :body, :presence => true
   validates :slug, :presence => true,
-                   :uniqueness => { :case_sensitive => false },
-                   :length => { :maximum => 255 },
-                   :format => { :with => /^[a-z0-9-]+/i }
+                   :slug => true,
+                   :length => { :maximum => 255 }
 
   private
 
   def generate_slug
-    self.slug = title.parameterize
+    self.slug = title.parameterize if self.slug.nil? || self.slug.empty?
   end
 end
