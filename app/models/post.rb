@@ -15,6 +15,7 @@ class Post < ActiveRecord::Base
   attr_accessible :title, :body, :published, :user_id
 
   belongs_to :user
+  has_many :comments, :dependent => :destroy
 
   default_scope order("created_at DESC")
 
