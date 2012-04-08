@@ -41,6 +41,10 @@ Ambition::Application.routes.draw do
     root :to => 'dashboard#index'
   end
 
+  # Posts
+  get "/posts" => "posts#index"
+  get "/:slug" => "posts#show"
+
   # Pages!
   get '/:slug/' => 'pages#show'
 
