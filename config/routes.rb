@@ -23,6 +23,8 @@ Ambition::Application.routes.draw do
       get 'page/:page', :action => :index, :on => :collection
       get 'suspend', :action => :suspend, :as => 'suspend'
       get 'activate', :action => :activate, :as => 'activate'
+      get 'adminize', :action => :adminize, :as => 'adminize'
+      get 'deadminize', :action => :deadminize, :as => 'deadminize'
     end
 
     # Pages

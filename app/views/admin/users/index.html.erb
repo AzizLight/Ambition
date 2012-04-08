@@ -20,11 +20,17 @@
             <td class="last">
               <%= link_to image_tag("img/icons/16/user.png", :alt => "Show user"), admin_user_path(user),  :title => "Show user", :class => "tooltip"  %>
               <%= link_to image_tag("img/icons/16/user_edit.png", :alt => "Edit user"), edit_admin_user_path(user), :title => "Edit user", :class => "tooltip" %>
-              <% unless current_user.id == user.id %>
+              <% unless current_user.id == user.id || !current_user.admin? %>
                 <% if user.active? %>
                   <%= link_to image_tag("img/icons/16/user_delete.png", :alt => "Suspend user"), admin_user_suspend_path(user), :title => "Suspend user", :class => "tooltip" %>
                 <% else %>
                   <%= link_to image_tag("img/icons/16/user_add.png", :alt => "Activate user"), admin_user_activate_path(user), :title => "Activate user", :class => "tooltip" %>
+                <% end %>
+
+                <% if user.admin? %>
+                  <%= link_to image_tag("img/icons/16/user.png", :alt => "Deadminize user" ), admin_user_deadminize_path(user), :title => "Deadminize user", :class => "tooltip" %>
+                <% else %>
+                  <%= link_to image_tag("img/icons/16/user_suit.png", :alt => "Adminize user" ), admin_user_adminize_path(user), :title => "Adminize user", :class => "tooltip" %>
                 <% end %>
               <% end %>
             </td>

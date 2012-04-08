@@ -77,7 +77,7 @@ class Admin::UsersController < Admin::BaseController
 
     if user.active?
       flash[:error] = "You can't activate a user that is already active!"
-    else user.admin?
+    else
       user.activate
       ActivityLog.create!(
         :name => "User activated!",
@@ -87,6 +87,44 @@ class Admin::UsersController < Admin::BaseController
         :ip_address => request.remote_ip
       )
       flash[:success] = "User activated successfully!"
+    end
+
+    redirect_back_or_to admin_users_url
+  end
+
+  def adminize
+    user = User.find_by_id(params[:user_id])
+
+    if user.admin?
+      flash[:error] = "You can't turn an admin into an admin!"
+    elsif current_user.admin? && user.adminize
+      ActivityLog.create!(
+        :name => "User turned into admin!",
+        :description => "#{current_user.username} turned #{user.username} into an admin.",
+        :entity => "user",
+        :user_id => current_user.id,
+        :ip_address => request.remote_ip
+      )
+      flash[:success] = "User adminized successfully!"
+    end
+
+    redirect_back_or_to admin_users_url
+  end
+
+  def deadminize
+    user = User.find_by_id(params[:user_id])
+
+    if !user.admin?
+      flash[:error] = "You can't turn a regular user into a regular user!"
+    elsif current_user.admin? && user.deadminize
+      ActivityLog.create!(
+        :name => "Admin turned into a regular user!",
+        :description => "#{current_user.username} turned #{user.username} into a regular user.",
+        :entity => "user",
+        :user_id => current_user.id,
+        :ip_address => request.remote_ip
+      )
+      flash[:success] = "User deadminized successfully!"
     end
 
     redirect_back_or_to admin_users_url

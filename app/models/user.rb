@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :activity_logs
 
-  attr_accessible :username, :email, :password, :password_confirmation, :admin, :active
+  attr_accessible :username, :email, :password, :password_confirmation
 
   validates :username, :presence => true,
                        :uniqueness => { :case_sensitive => false },
@@ -61,6 +61,16 @@ class User < ActiveRecord::Base
 
   def activate
     self.active = true
+    self.save
+  end
+
+  def adminize
+    self.admin = true
+    self.save
+  end
+
+  def deadminize
+    self.admin = false
     self.save
   end
 end
